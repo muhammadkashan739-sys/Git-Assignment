@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Auction Lots - AuctionsTable</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Force dropdown consistency */
+        .dropdown-menu {
+            display: none !important;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 180px;
+            padding: 6px;
+            border-radius: 12px;
+            background: #02081a;
+            box-shadow: 0 18px 60px rgba(15, 23, 42, 0.9);
+            list-style: none;
+            z-index: 2000;
+        }
+
+        .dropdown.open .dropdown-menu {
+            display: block !important;
+        }
+
+        .chip {
+            padding: 2px 8px;
+            border: 1px solid;
+            border-radius: 12px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+        <div class="logo">
+            <h1>AuctionsTable</h1>
+            <p>Valuable Items &amp; Goods Auction House</p>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle active" id="nav-auctions">Auctions ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="furniture.html">Furniture</a></li>
+                        <li><a href="paintings.html">Paintings</a></li>
+                        <li><a href="collectibles.html">Collectibles</a></li>
+                        <li><a href="jewelry.html">Jewelry</a></li>
+                        <li><a href="live-auctions.html" style="color: var(--accent); font-weight: bold;">Live Lots</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="completed-auctions.html">Completed Auctions</a></li>
+                <li><a href="create-account.html">Create Account</a></li>
+                <li><a href="place-bid.html">Place Bid (Dummy)</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2>Live Auction Spotlight</h2>
+        <p style="max-width:620px;">
+            Track bids in real time on featured lots. This is a
+            <strong>frontend demo</strong> – values update on this page only
+            to help you explain bidding logic in your eProject.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container grid-3">
+        <div class="card">
+            <h3>Lots Active</h3>
+            <p id="stat-lots" style="font-size:22px; margin-top:4px;">0</p>
+        </div>
+        <div class="card">
+            <h3>Top Bid</h3>
+            <p id="stat-top-bid" style="font-size:22px; margin-top:4px;">$0</p>
+        </div>
+        <div class="card">
+            <h3>Closing Soon</h3>
+            <p id="stat-closing" style="font-size:22px; margin-top:4px;">0 lots</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container auction-panel">
+        <h3 style="margin-bottom:8px;">Featured Live Lots</h3>
+        <table class="auction-table">
+            <thead>
+                <tr>
+                    <th>Lot</th>
+                    <th>Item</th>
+                    <th>Current Bid</th>
+                    <th>Bids</th>
+                    <th>Time Left</th>
+                    <th style="text-align:right;">Action</th>
+                </tr>
+            </thead>
+            <tbody id="live-auction-body">
+                </tbody>
+        </table>
+        <p id="bid-message" style="font-size:12px; color:#9ca3af; margin-top:10px;"></p>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container footer-content">
+        <div class="footer-left">
+            <h3>AuctionsTable</h3>
+            <p>Serving premium auctions for over 25 years.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AuctionsTable. Demo live bidding table.</p>
+        </div>
+    </footer>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dd = document.querySelector('.dropdown');
+        const toggle = document.querySelector('.dropdown-toggle');
+        if (dd && toggle) {
+            toggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dd.classList.toggle('open');
+            });
+            document.addEventListener('click', function (e) {
+                if (!dd.contains(e.target)) dd.classList.remove('open');
+            });
+        }
+    });
+</script>
+
+<script>
+    const liveLots = [
+        { id: "lot-01", lotNo: "001", title: "Vintage Oak Dining Table", category: "Furniture", currentBid: 1450, bids: 12, minutesLeft: 3, secondsLeft: 21, reserveMet: true },
+        { id: "lot-02", lotNo: "014", title: "Impressionist Landscape Painting", category: "Paintings", currentBid: 2700, bids: 9, minutesLeft: 12, secondsLeft: 5, reserveMet: true },
+        { id: "lot-03", lotNo: "023", title: "Antique Coin Collection", category: "Collectibles", currentBid: 980, bids: 15, minutesLeft: 4, secondsLeft: 2, reserveMet: false },
+        { id: "lot-04", lotNo: "031", title: "Diamond Necklace", category: "Jewelry", currentBid: 4850, bids: 7, minutesLeft: 1, secondsLeft: 10, reserveMet: true }
+    ];
+
+    function formatCurrency(amount) { return "$" + amount.toLocaleString("en-US"); }
+    function formatTime(mins, secs) { return String(mins).padStart(2, "0") + ":" + String(secs).padStart(2, "0"); }
+
+    function reserveLabel(lot) {
+        return lot.reserveMet 
+            ? '<span class="chip" style="border-color:rgba(34,197,94,0.5); color:#22c55e;">● Reserve met</span>' 
+            : '<span class="chip" style="border-color:rgba(245,158,11,0.6); color:#f59e0b;">● Below reserve</span>';
+    }
+
+    function renderLiveTable() {
+        const tbody = document.getElementById("live-auction-body");
+        tbody.innerHTML = "";
+        liveLots.forEach(lot => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td><div style="font-weight:600;">#${lot.lotNo}</div><div style="font-size:11px; color:#9ca3af;">${lot.category}</div></td>
+                <td><div style="font-size:13px;">${lot.title}</div><div style="margin-top:4px;">${reserveLabel(lot)}</div></td>
+                <td>${formatCurrency(lot.currentBid)}</td>
+                <td>${lot.bids} bids</td>
+                <td><span style="font-family:monospace;">${formatTime(lot.minutesLeft, lot.secondsLeft)}</span></td>
+                <td style="text-align:right;"><button class="btn" style="padding:6px 12px; font-size:11px;" onclick="placeBid('${lot.id}')">Place Bid</button></td>
+            `;
+            tbody.appendChild(tr);
+        });
+        updateStats();
+    }
+
+    function updateStats() {
+        document.getElementById("stat-lots").textContent = liveLots.length;
+        document.getElementById("stat-top-bid").textContent = formatCurrency(Math.max(...liveLots.map(l => l.currentBid)));
+        const closing = liveLots.filter(l => l.minutesLeft < 5).length;
+        document.getElementById("stat-closing").textContent = closing + (closing === 1 ? " lot" : " lots");
+    }
+
+    function placeBid(lotId) {
+        const lot = liveLots.find(l => l.id === lotId);
+        const inc = lot.currentBid >= 1000 ? 100 : 50;
+        lot.currentBid += inc;
+        lot.bids += 1;
+        document.getElementById("bid-message").textContent = `Bid placed on lot #${lot.lotNo}. New bid: ${formatCurrency(lot.currentBid)}`;
+        renderLiveTable();
+    }
+
+    document.addEventListener("DOMContentLoaded", renderLiveTable);
+</script>
+
+</body>
+</html>

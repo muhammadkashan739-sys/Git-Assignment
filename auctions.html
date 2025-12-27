@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Auctions - AuctionsTable</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Modern Dropdown Styles */
+        .main-nav .dropdown .dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            left: 0; 
+            top: 100%; 
+            background: #02081a; 
+            list-style: none; 
+            padding: 10px; 
+            margin: 6px 0 0; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            min-width: 180px; 
+            z-index: 2000;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .main-nav .dropdown.open .dropdown-menu { 
+            display: block; 
+        }
+
+        /* Category Card Enhancements */
+        .category-card {
+            text-align: center;
+            padding: 30px 20px;
+            transition: all 0.3s ease;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 15px;
+        }
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.05);
+        }
+        .category-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
+        }
+
+        /* Search Bar UI */
+        .filter-bar {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .filter-input {
+            background: rgba(2, 8, 26, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            flex-grow: 1;
+        }
+
+        /* Live Table Pulse */
+        .status-pulse {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 8px #22c55e;
+            animation: pulse-animation 2s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+        <div class="logo">
+            <h1>AuctionsTable</h1>
+            <p>Valuable Items &amp; Goods Auction House</p>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle active" id="nav-auctions">Auctions ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="live-auctions.html" style="color: #00d4ff; font-weight: bold;">All Categories</a></li>
+                        <li><a href="furniture.html">Furniture</a></li>
+                        <li><a href="paintings.html">Paintings</a></li>
+                        <li><a href="collectibles.html">Collectibles</a></li>
+                        <li><a href="jewelry.html">Jewelry</a></li>
+                    </ul>
+                </li>
+                <li><a href="completed-auctions.html">Completed Auctions</a></li>
+                <li><a href="create-account.html">Create Account</a></li>
+                <li><a href="place-bid.html">Place Bid (Dummy)</a></li>
+                <li><a href="index.html#about-us">About Us</a></li>
+                <li><a href="index.html#contact-us">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2 style="margin-bottom: 10px;">Auction Catalog</h2>
+        <p style="max-width:640px; color: #9ca3af; margin-bottom: 30px;">
+            Explore our curated departments. Use the filters below to find specific lots currently accepting bids.
+        </p>
+
+        <div class="filter-bar">
+            <input type="text" class="filter-input" placeholder="Search for items (e.g. 'Oak Table', 'Oil Painting')...">
+            <select class="filter-input" style="flex-grow: 0; min-width: 150px;">
+                <option>All Categories</option>
+                <option>Furniture</option>
+                <option>Paintings</option>
+                <option>Collectibles</option>
+                <option>Jewelry</option>
+            </select>
+            <button class="btn" style="padding: 10px 25px;">Search</button>
+        </div>
+
+        <div class="grid-4">
+            <div class="card category-card">
+                <span class="category-icon">🪑</span>
+                <h3>Furniture</h3>
+                <p style="font-size: 13px; color: #9ca3af; margin-bottom: 15px;">Antiques & modern decor.</p>
+                <a href="furniture.html" class="btn">View Lots</a>
+            </div>
+
+            <div class="card category-card">
+                <span class="category-icon">🎨</span>
+                <h3>Paintings</h3>
+                <p style="font-size: 13px; color: #9ca3af; margin-bottom: 15px;">Classic & modern art.</p>
+                <a href="paintings.html" class="btn">View Lots</a>
+            </div>
+
+            <div class="card category-card">
+                <span class="category-icon">🪙</span>
+                <h3>Collectibles</h3>
+                <p style="font-size: 13px; color: #9ca3af; margin-bottom: 15px;">Rare coins & artifacts.</p>
+                <a href="collectibles.html" class="btn">View Lots</a>
+            </div>
+
+            <div class="card category-card">
+                <span class="category-icon">💎</span>
+                <h3>Jewelry</h3>
+                <p style="font-size: 13px; color: #9ca3af; margin-bottom: 15px;">Precious stones & gems.</p>
+                <a href="jewelry.html" class="btn">View Lots</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container auction-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h3 style="border-left: 4px solid #00d4ff; padding-left: 15px;">Featured Live Lots</h3>
+            <span class="chip" style="border-color: #22c55e; color: #22c55e; font-weight: bold; background: rgba(34, 197, 94, 0.1);">
+                <span class="status-pulse"></span> LIVE AUCTION
+            </span>
+        </div>
+
+        <table class="auction-table">
+            <thead>
+                <tr>
+                    <th>Lot #</th>
+                    <th>Item Description</th>
+                    <th>Category</th>
+                    <th>High Bid</th>
+                    <th>Time Remaining</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="color: #9ca3af;">#102</td>
+                    <td style="font-weight: 500;">Vintage Oak Dining Table</td>
+                    <td>Furniture</td>
+                    <td style="color: #00d4ff; font-weight: bold;">$1,450</td>
+                    <td><span style="color: #f87171;">02h 14m</span></td>
+                    <td><a href="place-bid.html" class="btn" style="padding: 6px 15px; font-size: 12px;">Place Bid</a></td>
+                </tr>
+                <tr>
+                    <td style="color: #9ca3af;">#341</td>
+                    <td style="font-weight: 500;">Classic Landscape Painting</td>
+                    <td>Paintings</td>
+                    <td style="color: #00d4ff; font-weight: bold;">$2,300</td>
+                    <td>05h 22m</td>
+                    <td><a href="place-bid.html" class="btn" style="padding: 6px 15px; font-size: 12px;">Place Bid</a></td>
+                </tr>
+                <tr>
+                    <td style="color: #9ca3af;">#502</td>
+                    <td style="font-weight: 500;">Gold Roman Coin Set</td>
+                    <td>Collectibles</td>
+                    <td style="color: #00d4ff; font-weight: bold;">$980</td>
+                    <td>01h 42m</td>
+                    <td><a href="place-bid.html" class="btn" style="padding: 6px 15px; font-size: 12px;">Place Bid</a></td>
+                </tr>
+                <tr>
+                    <td style="color: #9ca3af;">#777</td>
+                    <td style="font-weight: 500;">Diamond Tennis Bracelet</td>
+                    <td>Jewelry</td>
+                    <td style="color: #00d4ff; font-weight: bold;">$3,100</td>
+                    <td><span style="color: #f87171;">00h 45m</span></td>
+                    <td><a href="place-bid.html" class="btn" style="padding: 6px 15px; font-size: 12px;">Place Bid</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container footer-content">
+        <div class="footer-left">
+            <h3>AuctionsTable</h3>
+            <p>Your premier destination for high-value assets and collectibles.</p>
+        </div>
+        <div class="footer-middle">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="completed-auctions.html">Completed</a></li>
+                <li><a href="place-bid.html">Bid Demo</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 AuctionsTable. Academic eProject Demo.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dd = document.querySelector('.dropdown');
+        const toggle = document.querySelector('.dropdown-toggle');
+
+        // Toggle dropdown on click
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            dd.classList.toggle('open');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dd.contains(e.target)) {
+                dd.classList.remove('open');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Collectibles Auctions - AuctionsTable</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Shared Navigation Styles */
+        .main-nav .dropdown .dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            left: 0; 
+            top: 100%; 
+            background: #02081a; 
+            list-style: none; 
+            padding: 10px; 
+            margin: 6px 0 0; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            min-width: 180px; 
+            z-index: 2000;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .main-nav .dropdown.open .dropdown-menu { 
+            display: block; 
+        }
+
+        /* Card Image Aspect Ratio & Hover */
+        .card {
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #00d4ff;
+        }
+        .card img {
+            width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Prevents stretching */
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        /* Highlighting price */
+        .price-tag {
+            font-size: 1.1rem;
+            color: #00d4ff;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+        <div class="logo">
+            <h1>AuctionsTable</h1>
+            <p>Valuable Items & Goods Auction House</p>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle active">Auctions ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="live-auctions.html">All Categories</a></li>
+                        <li><a href="furniture.html">Furniture</a></li>
+                        <li><a href="paintings.html">Paintings</a></li>
+                        <li><a href="collectibles.html" class="active" style="color: #00d4ff;">Collectibles</a></li>
+                        <li><a href="jewelry.html">Jewelry</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="completed-auctions.html">Completed Auctions</a></li>
+                <li><a href="create-account.html">Create Account</a></li>
+                <li><a href="place-bid.html">Place Bid (Dummy)</a></li>
+                <li><a href="index.html#about-us">About Us</a></li>
+                <li><a href="index.html#contact-us">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2 style="border-left: 4px solid #00d4ff; padding-left: 15px;">Collectibles Department</h2>
+        <p style="max-width:640px; color: #9ca3af; margin-top: 10px;">
+            Explore rare coins, stamps, autographs, and historical artifacts. 
+            All items are vetted for historical significance and provenance.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container grid-4">
+
+        <div class="card">
+            <img src="img/images.jfif" alt="Roman Coins">
+            <h3>Ancient Roman Gold Coin Set</h3>
+            <p class="price-tag">Starting at <strong>$700</strong></p>
+            <p style="font-size: 12px; color: #9ca3af; margin-bottom: 15px;">Minted circa 120 AD, featuring Emperor Hadrian.</p>
+            <a href="place-bid.html" class="btn">Place Bid</a>
+        </div>
+
+        <div class="card">
+            <img src="img/old-3198192.jpg" alt="Stamp Collection">
+            <h3>Rare World Stamp Collection</h3>
+            <p class="price-tag">Starting at <strong>$420</strong></p>
+            <p style="font-size: 12px; color: #9ca3af; margin-bottom: 15px;">A curated album of early 20th-century philately.</p>
+            <a href="place-bid.html" class="btn">Place Bid</a>
+        </div>
+
+        <div class="card">
+            <img src="img/statue-3588165.jpg" alt="Signed Photo">
+            <h3>Signed Historic Celebrity Photo</h3>
+            <p class="price-tag">Starting at <strong>$250</strong></p>
+            <p style="font-size: 12px; color: #9ca3af; margin-bottom: 15px;">Authenticated signature with certificate of provenance.</p>
+            <a href="place-bid.html" class="btn">Place Bid</a>
+        </div>
+
+        <div class="card">
+            <img src="img/CN105_3-862065.webp" alt="Vintage Compass">
+            <h3>Vintage Brass Explorer's Compass</h3>
+            <p class="price-tag">Starting at <strong>$320</strong></p>
+            <p style="font-size: 12px; color: #9ca3af; margin-bottom: 15px;">Hand-crafted marine navigation tool from the 1880s.</p>
+            <a href="place-bid.html" class="btn">Place Bid</a>
+        </div>
+
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container footer-content">
+        <div class="footer-left">
+            <h3>AuctionsTable</h3>
+            <p>Your trusted partner for premium auctions.</p>
+        </div>
+
+        <div class="footer-middle">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="completed-auctions.html">Completed</a></li>
+                <li><a href="place-bid.html">Bid Demo</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2025 AuctionsTable. Demo Academic Website.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dd = document.querySelector('.dropdown');
+        const toggle = document.querySelector('.dropdown-toggle');
+
+        if (toggle) {
+            toggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                dd.classList.toggle('open');
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+        });
+    });
+</script>
+
+</body>
+</html>

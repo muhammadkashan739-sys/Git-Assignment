@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AuctionsTable - Premium Online Auctions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 1. Fix for Purple/Visited Links in Table and Section */
+        /* This ensures "View All Lots" and "Bid Now" stay Cyan */
+        .auction-table a, 
+        .section a,
+        .btn-outline,
+        .btn-small {
+            color: #00d4ff !important; 
+            text-decoration: none !important;
+            transition: 0.3s ease;
+        }
+
+        /* Hover effect for these links */
+        .auction-table a:hover, 
+        .btn-outline:hover {
+            color: #ffffff !important;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
+        }
+
+        /* 2. Modern Dark Dropdown Sync */
+        .main-nav .dropdown .dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            left: 0; 
+            top: 100%; 
+            background: #02081a; 
+            list-style: none; 
+            padding: 10px; 
+            margin: 6px 0 0; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            min-width: 180px; 
+            z-index: 2000;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Show dropdown on click/open class */
+        .main-nav .dropdown.open .dropdown-menu { display: block; }
+        
+        .main-nav .dropdown-menu li a { 
+            color: #fff !important; 
+            padding: 10px; 
+            border-radius: 4px; 
+            display: block;
+        }
+        
+        .main-nav .dropdown-menu li a:hover { 
+            background: rgba(0, 212, 255, 0.1); 
+            color: #00d4ff !important; 
+        }
+
+        /* 3. Hero Image & Layout Fixes */
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .status-live {
+            color: #00ff88;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        /* Ensure Table Text is readable */
+        .auction-table th { color: #9ca3af; text-transform: uppercase; font-size: 13px; }
+        .auction-table td { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+        <div class="logo">
+            <h1>AuctionsTable</h1>
+            <p>Valuable Items &amp; Goods Auction House</p>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" id="nav-auctions">Auctions ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="live-auctions.html">Live Lots</a></li>
+                        <li><a href="furniture.html">Furniture</a></li>
+                        <li><a href="paintings.html">Paintings</a></li>
+                        <li><a href="collectibles.html">Collectibles</a></li>
+                        <li><a href="jewelry.html">Jewelry</a></li>
+                    </ul>
+                </li>
+                <li><a href="completed-auctions.html">Completed Auctions</a></li>
+                <li><a href="create-account.html">Create Account</a></li>
+                <li><a href="place-bid.html">Place Bid</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+                <li><a href="#login" class="btn-small" style="border: 1px solid #00d4ff; padding: 5px 15px; border-radius: 4px;">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="slider" id="main-slider">
+        <div class="slide active">
+            <img src="img/carousal-1.jpeg" alt="Furniture">
+            <div class="hero-overlay">
+                <div class="container">
+                    <h2>Exquisite Antique Furniture</h2>
+                    <p>Discover pieces with history and character.</p>
+                    <a href="furniture.html" class="btn">Explore Furniture</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section alt-bg">
+    <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+            <h2 style="border-left: 4px solid #00d4ff; padding-left: 15px;">Live Auction Lots</h2>
+            <a href="live-auctions.html" class="btn-outline" style="border: 1px solid #00d4ff; padding: 8px 20px; border-radius: 50px; font-size: 14px;">View All Lots</a>
+        </div>
+        
+        <table class="auction-table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th align="left">Lot #</th>
+                    <th align="left">Item Description</th>
+                    <th align="left">Current Bid</th>
+                    <th align="left">Status</th>
+                    <th align="right">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#101</td>
+                    <td>Vintage Oak Dining Table</td>
+                    <td style="color: #00d4ff; font-weight: bold;">$1,450</td>
+                    <td><span class="status-live">Live</span></td>
+                    <td align="right"><a href="place-bid.html" class="btn-small">Bid Now</a></td>
+                </tr>
+                <tr>
+                    <td>#102</td>
+                    <td>Abstract Modern Canvas</td>
+                    <td style="color: #00d4ff; font-weight: bold;">$550</td>
+                    <td><span class="status-live">Live</span></td>
+                    <td align="right"><a href="place-bid.html" class="btn-small">Bid Now</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="section" id="about-us">
+    <div class="container">
+        <div class="grid-2">
+            <div>
+                <h2 style="border-left: 4px solid #00d4ff; padding-left: 15px; margin-bottom: 20px;">Our Heritage</h2>
+                <p>AuctionsTable has over 25 years of experience in organizing premium auctions for valuable items. Our online platform brings the excitement of the auction house directly to your screen.</p>
+            </div>
+            <div class="card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 12px;">
+                <h3 style="color: #00d4ff; margin-bottom: 15px;">Contact Details</h3>
+                <p style="margin-bottom: 10px;"><strong>📍 Address:</strong> 123 Auction Street, City Name</p>
+                <p style="margin-bottom: 10px;"><strong>📞 Phone:</strong> +92-300-1234567</p>
+                <p><strong>✉️ Email:</strong> info@auctionstable.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container footer-content">
+        <div class="footer-left">
+            <h3>AuctionsTable</h3>
+            <p>&copy; 2025 AuctionsTable. Academic eProject Demo.</p>
+        </div>
+        <div class="footer-right">
+            <a href="#disclaimer">Disclaimer</a> | <a href="#sitemap">Sitemap</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdown = document.querySelector('.dropdown');
+        const toggle = document.querySelector('.dropdown-toggle');
+
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdown.classList.toggle('open');
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(e) {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

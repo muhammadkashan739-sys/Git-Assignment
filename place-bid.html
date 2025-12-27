@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Place Bid (Demo) - AuctionsTable</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Shared Dropdown Consistency */
+        .main-nav .dropdown .dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            left: 0; 
+            top: 100%; 
+            background: #02081a; 
+            list-style: none; 
+            padding: 10px; 
+            margin: 6px 0 0; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            min-width: 180px; 
+            z-index: 2000;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .main-nav .dropdown.open .dropdown-menu { 
+            display: block; 
+        }
+
+        /* Form Enhancement */
+        .auction-panel select, .auction-panel input {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .auction-panel select:focus, .auction-panel input:focus {
+            border-color: #00d4ff !important;
+            box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+            outline: none;
+        }
+
+        .bid-snapshot-card {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+        <div class="logo">
+            <h1>AuctionsTable</h1>
+            <p>Valuable Items &amp; Goods Auction House</p>
+        </div>
+
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Auctions ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="live-auctions.html">Live Lots</a></li>
+                        <li><a href="furniture.html">Furniture</a></li>
+                        <li><a href="paintings.html">Paintings</a></li>
+                        <li><a href="collectibles.html">Collectibles</a></li>
+                        <li><a href="jewelry.html">Jewelry</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="completed-auctions.html">Completed Auctions</a></li>
+                <li><a href="create-account.html">Create Account</a></li>
+                <li><a href="place-bid.html" class="active" style="color: #00d4ff;">Place Bid (Dummy)</a></li>
+                <li><a href="index.html#about-us">About Us</a></li>
+                <li><a href="index.html#contact-us">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+        <h2 style="margin-bottom: 10px;">Place a Bid (Demo)</h2>
+        <p style="max-width:640px; color: #9ca3af;">
+            Use this page to submit a <strong>sample bid</strong> on any auction lot. 
+            This form is for <strong>academic purposes</strong> — no real payments or financial 
+            transactions will take place.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container grid-2">
+
+        <div class="auction-panel">
+            <h3 style="margin-bottom:15px; border-left: 4px solid #00d4ff; padding-left: 10px;">Bid Submission</h3>
+
+            <form class="contact-form" id="bidForm">
+                <input type="text" name="fullName" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="font-size:12px; color:#9ca3af; display: block; margin-bottom: 5px;">Item Category</label>
+                    <select name="category" required style="width:100%; padding:10px; border-radius:10px; border:1px solid rgba(148,163,184,0.4); background:rgba(15,23,42,0.9); color:#e5edf7;">
+                        <option value="">Choose a category...</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Paintings">Paintings</option>
+                        <option value="Collectibles">Collectibles</option>
+                        <option value="Jewelry">Jewelry</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label style="font-size:12px; color:#9ca3af; display: block; margin-bottom: 5px;">Auction Lot</label>
+                    <select name="item" required style="width:100%; padding:10px; border-radius:10px; border:1px solid rgba(148,163,184,0.4); background:rgba(15,23,42,0.9); color:#e5edf7;">
+                        <option value="">Select an active lot...</option>
+                        <option value="101">#101 - Vintage Oak Dining Table</option>
+                        <option value="214">#214 - Mystic Mountains Painting</option>
+                        <option value="333">#333 - Diamond Necklace</option>
+                    </select>
+                </div>
+
+                <div style="position: relative; margin-bottom: 15px;">
+                    <span style="position: absolute; left: 12px; top: 10px; color: #9ca3af;">$</span>
+                    <input type="number" name="bidAmount" placeholder="Your Bid (USD)" min="1" required style="padding-left: 25px;">
+                </div>
+
+                <div style="background: rgba(0, 212, 255, 0.05); padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                    <label style="font-size:12px; color:#00d4ff; display:block; margin-bottom:8px; font-weight: bold;">Bid Type</label>
+                    <div style="display:flex; gap:20px; font-size:13px;">
+                        <label style="cursor: pointer;"><input type="radio" name="bidType" value="Standard" checked> Standard</label>
+                        <label style="cursor: pointer;"><input type="radio" name="bidType" value="Auto"> Auto-Bid</label>
+                    </div>
+                </div>
+
+                <label style="font-size:11px; color:#9ca3af; display:flex; gap:8px; align-items:flex-start; margin-bottom:20px; line-height: 1.4;">
+                    <input type="checkbox" required style="margin-top:3px;">
+                    <span>I understand this is a demo and no financial transaction will occur.</span>
+                </label>
+
+                <button type="submit" class="btn" style="width:100%; font-weight: bold;">Submit Demo Bid</button>
+            </form>
+        </div>
+
+        <div class="auction-panel">
+            <h3 style="margin-bottom:15px; color: #00d4ff;">Live Status</h3>
+            
+            <div class="bid-snapshot-card">
+                <div style="display:flex; gap:8px; margin-bottom:15px;">
+                    <span class="chip" style="border-color:#22c55e; color:#22c55e;">● Active</span>
+                    <span class="chip" style="border-color:#ef4444; color:#ef4444;">● Demo</span>
+                </div>
+
+                <table class="auction-table">
+                    <thead>
+                        <tr>
+                            <th>Lot</th>
+                            <th>Current Bid</th>
+                            <th>Time Left</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#101</td>
+                            <td style="color: #00d4ff;">$1,450</td>
+                            <td>03:25</td>
+                        </tr>
+                        <tr>
+                            <td>#214</td>
+                            <td style="color: #00d4ff;">$2,700</td>
+                            <td>15:10</td>
+                        </tr>
+                        <tr>
+                            <td>#333</td>
+                            <td style="color: #00d4ff;">$4,850</td>
+                            <td>01:02</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size:11px; color:#64748b; margin-top:15px; text-align: center; font-style: italic;">
+                    Values refresh automatically in production systems.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container footer-content">
+        <div class="footer-left">
+            <h3>AuctionsTable</h3>
+            <p>Premium Auction Presentation Demo.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AuctionsTable. Demo bidding simulation.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Dropdown behavior
+        const dropdown = document.querySelector('.dropdown');
+        const toggle = document.querySelector('.dropdown-toggle');
+
+        if (dropdown && toggle) {
+            toggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                dropdown.classList.toggle('open');
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('open');
+                }
+            });
+        }
+
+        // Demo Form Submission
+        const bidForm = document.getElementById('bidForm');
+        if (bidForm) {
+            bidForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('Success! Your demo bid has been recorded in the session.\n\nLot: ' + bidForm.item.value + '\nAmount: $' + bidForm.bidAmount.value);
+                bidForm.reset();
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

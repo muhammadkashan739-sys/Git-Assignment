@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paintings Auctions - AuctionsTable</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Force dropdown consistency */
+        .main-nav .dropdown .dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            left: 0; 
+            top: 100%; 
+            background: #02081a; /* Matching your dark theme */
+            list-style: none; 
+            padding: 10px; 
+            margin: 6px 0 0; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            min-width: 180px; 
+            z-index: 2000;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .main-nav .dropdown.open .dropdown-menu { 
+            display: block; 
+        }
+
+        /* Enhanced Painting Cards */
+        .card {
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 100%;
+            height: 250px; /* Slightly taller for art */
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .art-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 212, 255, 0.8);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="logo">
+                <h1>AuctionsTable</h1>
+                <p>Valuable Items &amp; Goods Auction House</p>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active" id="nav-auctions">Auctions ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="live-auctions.html">Live Lots</a></li>
+                            <li><a href="furniture.html">Furniture</a></li>
+                            <li><a href="paintings.html" style="color: #00d4ff; font-weight: bold;">Paintings</a></li>
+                            <li><a href="collectibles.html">Collectibles</a></li>
+                            <li><a href="jewelry.html">Jewelry</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="completed-auctions.html">Completed Auctions</a></li>
+                    <li><a href="create-account.html">Create Account</a></li>
+                    <li><a href="place-bid.html">Place Bid (Dummy)</a></li>
+
+                    <li><a href="index.html#about-us">About Us</a></li>
+                    <li><a href="index.html#contact-us">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2 style="text-align:center; margin-bottom: 10px;">Fine Art Gallery</h2>
+            <p style="text-align:center; margin-bottom: 40px; color: #9ca3af;">
+                Discover masterworks from classical landscapes to modern abstract expressions.
+            </p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <span class="art-badge">Rare Find</span>
+                    <img src="img/langspace.jpg" alt="Landscape Painting">
+                    <h3>Mystic Mountains</h3>
+                    <p style="font-size: 13px; color: #9ca3af;">Oil on Canvas, 1890</p>
+                    <p>Current Bid: <b style="color: #00d4ff;">$700</b></p>
+                    <a href="place-bid.html" class="btn">Bid Now</a>
+                </div>
+
+                <div class="card">
+                    <img src="img/c4c24358ef0ac2184d7030dd1d0e0db9.jpg" alt="Abstract Modern Art">
+                    <h3>Prism of Motion</h3>
+                    <p style="font-size: 13px; color: #9ca3af;">Modern Acrylic Abstract</p>
+                    <p>Current Bid: <b style="color: #00d4ff;">$550</b></p>
+                    <a href="place-bid.html" class="btn">Bid Now</a>
+                </div>
+
+                <div class="card">
+                    <img src="img/Abstract Modern Art.jpg" alt="Classic Portrait">
+                    <h3>The Noble Portrait</h3>
+                    <p style="font-size: 13px; color: #9ca3af;">European Renaissance Style</p>
+                    <p>Current Bid: <b style="color: #00d4ff;">$1,200</b></p>
+                    <a href="place-bid.html" class="btn">Bid Now</a>
+                </div>
+
+                <div class="card">
+                    <span class="art-badge">Trending</span>
+                    <img src="img/pagoda-8018757.jpg" alt="Chinese Temple">
+                    <h3>Eastern Serenity</h3>
+                    <p style="font-size: 13px; color: #9ca3af;">Traditional Ink Wash</p>
+                    <p>Current Bid: <b style="color: #00d4ff;">$1,200</b></p>
+                    <a href="place-bid.html" class="btn">Bid Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <h3>AuctionsTable</h3>
+                <p>Curating the world's finest art for over 25 years.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AuctionsTable. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdown = document.querySelector('.dropdown');
+            const toggle = document.querySelector('.dropdown-toggle');
+
+            if (toggle && dropdown) {
+                toggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropdown.classList.toggle('open');
+                });
+
+                document.addEventListener('click', function (e) {
+                    if (!dropdown.contains(e.target)) {
+                        dropdown.classList.remove('open');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
